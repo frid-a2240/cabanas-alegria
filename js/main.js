@@ -24,36 +24,6 @@ function splitText(el, baseDelay = 0) {
   el.style.setProperty("--d", baseDelay + "ms");
 }
 
-/* ---------- Intro: árbol ---------- */
-function buildTree() {
-  $$(".tree-lines path").forEach(p => p.setAttribute("pathLength", "1"));
-
-  const g = $(".leaves");
-  const colors = ["#9a2f26", "#c2463b", "#7f9774", "#a9bf9c", "#1e5a58", "#3f7a72"];
-  const ns = "http://www.w3.org/2000/svg";
-  // racimos de hojas en las puntas de las ramas
-  const clusters = [[42, 98], [60, 120], [160, 88], [142, 112], [68, 50], [78, 74], [135, 46], [124, 72], [100, 38], [100, 62], [84, 92], [118, 94]];
-  let n = 0;
-  clusters.forEach(([cx, cy]) => {
-    for (let k = 0; k < 5; k++) {
-      const a = Math.random() * Math.PI * 2;
-      const r = Math.random() * 13;
-      const leaf = document.createElementNS(ns, "ellipse");
-      leaf.setAttribute("cx", (cx + Math.cos(a) * r).toFixed(1));
-      leaf.setAttribute("cy", (cy + Math.sin(a) * r * .8).toFixed(1));
-      leaf.setAttribute("rx", (3 + Math.random() * 2.5).toFixed(1));
-      leaf.setAttribute("ry", (1.6 + Math.random() * 1.2).toFixed(1));
-      leaf.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
-      leaf.setAttribute("opacity", (.75 + Math.random() * .25).toFixed(2));
-      leaf.classList.add("leaf");
-      leaf.style.setProperty("--r", Math.floor(Math.random() * 180) + "deg");
-      leaf.style.animationDelay = `${1.4 + n * 0.018 + Math.random() * .3}s, ${Math.random() * 3}s`;
-      g.appendChild(leaf);
-      n++;
-    }
-  });
-}
-
 /* ---------- Intro: entrar ---------- */
 const intro = $("#intro");
 let entered = false;
@@ -359,9 +329,8 @@ function booking() {
 document.addEventListener("DOMContentLoaded", () => {
   $(".year").textContent = new Date().getFullYear();
 
-  buildTree();
   const introTitle = $(".intro-title");
-  splitText(introTitle, 2100);
+  splitText(introTitle, 2600);
   splitText($(".hero-title"), 600);
   requestAnimationFrame(() => introTitle.classList.add("play"));
 

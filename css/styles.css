@@ -80,34 +80,44 @@ button { font: inherit; cursor: pointer; }
 }
 #intro.leaving .intro-content { transform: translateY(-40px) scale(.96); opacity: 0; filter: blur(6px); }
 
-.tree { width: clamp(120px, 20vw, 190px); height: auto; overflow: visible; margin: 0 auto -6px; }
-.tree-lines path {
-  stroke: var(--crema); stroke-width: 2.4;
+/* logo que se dibuja en la bienvenida: círculo, suelo, sierra, cabaña, sol y pino */
+.intro-logo {
+  display: block; width: clamp(110px, 15vw, 160px); height: auto; overflow: visible;
+  margin: 0 auto 14px; fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.intro-logo [pathLength] {
   stroke-dasharray: 1; stroke-dashoffset: 1;
-  animation: draw 1.6s var(--ease) forwards;
+  animation: draw var(--dur, 1s) var(--ease) var(--at, 0s) forwards;
 }
-.tree-lines .trunk { stroke-width: 4.5; animation-duration: 1.2s; }
-.tree-lines .ground { stroke-width: 1.2; opacity: .6; animation-delay: 0s; }
-.tree-lines .root { stroke-width: 2; }
-.tree-lines path:nth-child(n+3) { animation-delay: .7s; }
-.tree-lines path:nth-child(odd):nth-child(n+4) { animation-delay: 1.1s; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-
-.leaves .leaf {
-  transform-box: fill-box; transform-origin: center;
-  transform: scale(0) rotate(var(--r));
-  animation: leaf .8s var(--ease) forwards, sway 4s ease-in-out infinite alternate;
+.lg-ring   { stroke: var(--crema); stroke-width: 1.6; --dur: 1.3s; }
+.lg-ground { stroke: var(--crema); stroke-width: 1.6; --at: .7s; --dur: .7s; }
+.lg-mtn    { stroke: #c5d4bc; stroke-width: 1.6; --at: .9s; --dur: 1.1s; }
+.lg-walls  {
+  stroke: var(--crema); stroke-width: 1.6; fill: var(--teal); fill-opacity: 0;
+  animation: draw .8s var(--ease) 1.4s forwards, fillIn .6s ease 2.1s forwards !important;
 }
-@keyframes leaf { to { transform: scale(1) rotate(var(--r)); } }
-@keyframes sway {
-  from { translate: 0 0; }
-  to { translate: 1.5px -1px; }
+.lg-roof   { stroke: #e0675a; stroke-width: 2.6; --at: 1.9s; --dur: .6s; }
+.lg-door   { stroke: var(--crema); stroke-width: 1.4; --at: 2.3s; --dur: .4s; }
+.lg-sun {
+  stroke: #e0675a; stroke-width: 1.6;
+  transform-box: fill-box; transform-origin: center; transform: scale(0);
+  animation: pop .6s cubic-bezier(.3, 1.6, .5, 1) 2s forwards, glowSun 2.4s ease-in-out 2.6s infinite alternate;
 }
+.lg-pine {
+  fill: #a9bf9c; stroke: #a9bf9c; stroke-width: 1.2;
+  transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0);
+  animation: grow .7s var(--ease) 2.2s forwards;
+}
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes pop { to { transform: scale(1); } }
+@keyframes grow { to { transform: scaleY(1); } }
+@keyframes glowSun { from { transform: scale(1); } to { transform: scale(1.25); } }
 
 .intro-script {
   font-family: var(--script); font-size: clamp(30px, 4.5vw, 48px);
   margin: 6px 0 -6px; color: #f6efe4;
-  opacity: 0; animation: fadeUp 1s var(--ease) 1.9s forwards;
+  opacity: 0; animation: fadeUp 1s var(--ease) 2.4s forwards;
 }
 .intro-title {
   font-family: var(--serif); font-weight: 400;
@@ -120,14 +130,14 @@ button { font: inherit; cursor: pointer; }
 .intro-sub {
   font-size: 12px; text-transform: uppercase; letter-spacing: .35em;
   margin: 22px 0 34px; opacity: 0;
-  animation: fadeUp 1s var(--ease) 3.1s forwards;
+  animation: fadeUp 1s var(--ease) 3.6s forwards;
 }
 .intro-enter {
   display: inline-flex; align-items: center; gap: 12px;
   background: none; color: var(--crema);
   border: 1px solid rgba(246,239,228,.55); border-radius: 999px;
   padding: 12px 26px; font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
-  opacity: 0; animation: fadeUp 1s var(--ease) 3.4s forwards;
+  opacity: 0; animation: fadeUp 1s var(--ease) 3.9s forwards;
   transition: background .4s, color .4s, border-color .4s;
 }
 .intro-enter svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; animation: bob 1.8s ease-in-out infinite; }
