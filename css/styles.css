@@ -746,6 +746,8 @@ section { position: relative; }
   .gas-lbl { font-size: 20px; }
   .dest-lbl { font-size: 22px !important; letter-spacing: .1em; }
   .hwy-lbl { font-size: 22px; }
+  .route-map .ice-lbl { font-size: 8px; }
+  .route-map .ice-big { font-size: 12px; }
 
   .notify button { flex: 1 1 100%; }
   .f-brand { font-size: 20px !important; letter-spacing: .18em; }
