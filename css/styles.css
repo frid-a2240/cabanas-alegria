@@ -334,8 +334,8 @@ section { position: relative; }
 .story-row:last-child { margin-bottom: 0; }
 .story-row.reverse .story-img { order: -1; }
 .story-text p { color: var(--tinta-2); margin: 0 0 18px; }
-.story-img { margin: 0; position: relative; aspect-ratio: 4 / 5; overflow: visible; }
-.story-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) sepia(.12) contrast(1.04); }
+.story-img { margin: 0; position: relative; }
+.story-img img { width: 100%; height: auto; filter: saturate(1.1) sepia(.12) contrast(1.04); }
 .story-img::before {
   content: ""; position: absolute; inset: 24px -24px -24px 24px;
   border: 1px solid var(--teal); z-index: -1; opacity: .5;
@@ -356,7 +356,7 @@ section { position: relative; }
 @media (max-width: 860px) {
   .story-row { grid-template-columns: 1fr; }
   .story-row.reverse .story-img { order: 0; }
-  .story-img { aspect-ratio: 4 / 3; margin-right: 24px; }
+  .story-img { margin-right: 24px; }
   .story-row.reverse .story-img { margin: 0 0 0 24px; }
 }
 
@@ -710,6 +710,45 @@ section { position: relative; }
 @media (max-width: 900px) {
   .route-grid { grid-template-columns: 1fr; }
   .map-frame { aspect-ratio: 4 / 3; }
+}
+
+/* =========================================================
+   AJUSTES PARA TABLET Y CELULAR
+   ========================================================= */
+@media (max-width: 900px) {
+  .replay { position: static; display: block; margin: 10px auto 2px; }
+  .route-map .lbl { font-size: 16px; }
+  .gas-lbl { font-size: 17px; }
+  .dest-lbl { font-size: 18px !important; }
+  .route-map .ice-lbl { font-size: 8px; }
+  .route-map .ice-big { font-size: 12px; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero { padding-top: 120px; padding-bottom: 110px; }
+  .hero-lead br { display: none; }
+  .hero-actions .btn { flex: 1 1 100%; text-align: center; }
+
+  /* el marco desplazado de las fotos se encimaba con el texto */
+  .story-img::before { display: none; }
+  .story-img, .story-row.reverse .story-img { margin: 0; }
+  .story-img figcaption, .story-row.reverse .story-img figcaption { right: 0; left: auto; bottom: 0; }
+
+  .feature { padding: 28px 24px; }
+  .feature svg { width: 44px; height: 44px; margin-bottom: 12px; }
+
+  .games-list li { padding: 24px 12px; }
+  .games-list h4 { font-size: 20px; }
+  .games-list p { font-size: 13px; }
+
+  .route-map .lbl { font-size: 20px; }
+  .gas-lbl { font-size: 20px; }
+  .dest-lbl { font-size: 22px !important; letter-spacing: .1em; }
+  .hwy-lbl { font-size: 22px; }
+
+  .notify button { flex: 1 1 100%; }
+  .f-brand { font-size: 20px !important; letter-spacing: .18em; }
 }
 
 /* =========================================================

@@ -155,23 +155,37 @@ function nightScene() {
     stars.appendChild(s);
   }
 
-  // foquitos colgados del cable
-  const wire = $(".string-lights .wire");
-  const bulbs = $(".string-lights .bulbs");
-  const len = wire.getTotalLength();
-  const count = 22;
-  for (let i = 1; i < count; i++) {
-    const p = wire.getPointAtLength((len / count) * i);
-    const c = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-    c.setAttribute("cx", p.x);
-    c.setAttribute("cy", p.y + 7);
-    c.setAttribute("rx", 4);
-    c.setAttribute("ry", 6);
-    c.classList.add("bulb");
-    c.style.setProperty("--t", 0.6 + Math.random() * 1.6 + "s");
-    c.style.setProperty("--dl", i * 0.07 + "s");
-    bulbs.appendChild(c);
-  }
+  // foquitos colgados del cable: se dibujan al ancho real de la pantalla
+  // para que no se deformen en celular
+  const lights = $(".string-lights");
+  const wire = $(".wire", lights);
+  const bulbs = $(".bulbs", lights);
+  let lastW = 0;
+  const drawLights = () => {
+    const w = Math.round(lights.getBoundingClientRect().width);
+    if (!w || w === lastW) return;
+    lastW = w;
+    const sag = w < 640 ? 70 : 120;
+    lights.setAttribute("viewBox", `0 0 ${w} 160`);
+    wire.setAttribute("d", `M0 30 Q${w / 4} ${30 + sag} ${w / 2} 64 T${w} 56`);
+    bulbs.textContent = "";
+    const len = wire.getTotalLength();
+    const count = Math.max(10, Math.round(w / 55));
+    for (let i = 1; i < count; i++) {
+      const p = wire.getPointAtLength((len / count) * i);
+      const c = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      c.setAttribute("cx", p.x);
+      c.setAttribute("cy", p.y + 7);
+      c.setAttribute("rx", 4);
+      c.setAttribute("ry", 6);
+      c.classList.add("bulb");
+      c.style.setProperty("--t", 0.6 + Math.random() * 1.6 + "s");
+      c.style.setProperty("--dl", i * 0.07 + "s");
+      bulbs.appendChild(c);
+    }
+  };
+  drawLights();
+  addEventListener("resize", drawLights);
 
   // brasas de la fogata
   const canvas = $(".embers");
