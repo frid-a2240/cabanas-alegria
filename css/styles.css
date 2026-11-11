@@ -253,6 +253,25 @@ body.entered .hero-inner > *:nth-child(5) { animation-delay: 2.1s; }
 .hero-lead { font-size: clamp(15px, 1.6vw, 18px); max-width: 560px; margin: 0 auto 34px; color: rgba(246,239,228,.9); }
 
 
+/* pasos para reservar */
+.how {
+  list-style: none; padding: 0; margin: 0 auto 40px; max-width: 900px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(246,239,228,.18); border: 1px solid rgba(246,239,228,.18);
+}
+.how li { background: var(--teal); padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.how b {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid #c5d4bc; color: #c5d4bc; font-family: var(--serif); font-weight: 400; font-size: 18px;
+}
+.how span { font-size: 14px; line-height: 1.5; color: rgba(246,239,228,.85); }
+@media (max-width: 760px) { .how { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) {
+  .how { grid-template-columns: 1fr; }
+  .how li { flex-direction: row; text-align: left; }
+  .how b { flex: none; }
+}
+
 /* formulario de reservación (abre WhatsApp) */
 .booking {
   display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -585,7 +604,7 @@ section { position: relative; }
   padding: clamp(90px, 12vw, 150px) var(--gutter);
   overflow: hidden;
 }
-.cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
+.cta-inner { position: relative; max-width: 900px; margin: 0 auto; }
 .cta .eyebrow { color: #c5d4bc; }
 .cta .big-title em { color: #c5d4bc; }
 .cta-inner > p:not(.eyebrow) { color: rgba(246,239,228,.82); margin: 22px auto 34px; max-width: 520px; }
