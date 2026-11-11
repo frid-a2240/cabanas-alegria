@@ -764,6 +764,38 @@ section { position: relative; }
 }
 
 /* =========================================================
+   PORTADA EN PANTALLAS VERTICALES (celular y tablet de pie)
+   La foto es horizontal: en vez de agrandarla hasta llenar la pantalla
+   (se pixelea y solo se ve la reja), se muestra completa arriba y
+   la misma foto desenfocada queda de fondo.
+   ========================================================= */
+.hero-photo { display: none; }
+@media (max-width: 640px), (max-width: 1024px) and (orientation: portrait) {
+  .hero {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 92px 0 56px;
+  }
+  .hero-bg img { animation: none; transform: scale(1.2); filter: blur(22px) brightness(.5) saturate(1.2); }
+  .hero-shade { background: linear-gradient(180deg, rgba(25,18,14,.55) 0%, rgba(25,18,14,.15) 40%, rgba(25,18,14,.55) 100%); }
+  .hero-photo {
+    display: block; position: relative; margin: 0 0 30px; width: 100%;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 1.2s var(--ease) .3s, transform 1.2s var(--ease) .3s;
+  }
+  body.entered .hero-photo { opacity: 1; transform: none; }
+  .hero-photo img {
+    width: 100%; height: auto;
+    filter: saturate(1.15) contrast(1.05) sepia(.12);
+    box-shadow: 0 24px 50px -24px rgba(0,0,0,.7);
+  }
+  .hero-inner { padding: 0 var(--gutter); }
+  .scroll-cue { display: none; }
+}
+@media (min-width: 641px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero-photo { width: calc(100% - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
+}
+
+/* =========================================================
    AJUSTES PARA TABLET Y CELULAR
    ========================================================= */
 @media (max-width: 900px) {
@@ -777,7 +809,6 @@ section { position: relative; }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .hero { padding-top: 120px; padding-bottom: 110px; }
   .hero-lead br { display: none; }
   .hero-actions .btn { flex: 1 1 100%; text-align: center; }
 
