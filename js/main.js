@@ -66,8 +66,17 @@ function reveals() {
 function nav() {
   const header = $(".nav");
   const links = $$(".links a");
-  $(".burger").addEventListener("click", () => header.classList.toggle("open"));
-  links.forEach(a => a.addEventListener("click", () => header.classList.remove("open")));
+  const burger = $(".burger");
+  const setMenu = open => {
+    header.classList.toggle("open", open);
+    document.body.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+    burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+  };
+  burger.addEventListener("click", () => setMenu(!header.classList.contains("open")));
+  links.forEach(a => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+  addEventListener("resize", () => { if (innerWidth > 860) setMenu(false); });
 
   const sections = $$("main section[id]");
   const spy = new IntersectionObserver(entries => {

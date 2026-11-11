@@ -44,6 +44,8 @@ button { font: inherit; cursor: pointer; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 1.2s steps(6) infinite;
 }
+/* en celulares la textura queda fija: animarla sin parar alenta el scroll y el menú */
+@media (hover: none) { .grain { animation: none; } }
 @keyframes grain {
   0%,100% { transform: translate(0,0); }
   20% { transform: translate(-3%,2%); }
@@ -205,15 +207,37 @@ body.entered .nav { transform: none; opacity: 1; transition-delay: 0s, 0s, 0s, .
 .nav.open .burger span:last-child { top: 19px; transform: rotate(-45deg); }
 
 @media (max-width: 860px) {
-  .burger { display: block; z-index: 2; }
+  .burger { display: block; z-index: 2; width: 44px; height: 44px; }
+  .burger span { left: 10px; right: 10px; }
+  .burger span:first-child { top: 17px; }
+  .burger span:last-child { top: 26px; }
+  .nav.open .burger span:first-child, .nav.open .burger span:last-child { top: 21px; }
+  .brand { position: relative; z-index: 2; }
   .links {
-    position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 22px;
+    position: fixed; inset: 0; height: 100vh; height: 100dvh;
+    flex-direction: column; justify-content: center; gap: 18px;
     background: var(--tinta); color: var(--crema); font-size: 30px;
-    clip-path: circle(0 at calc(100% - 40px) 40px);
-    transition: clip-path .8s var(--ease);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .25s ease, visibility 0s linear .25s;
   }
-  .nav.open { color: var(--crema); }
-  .nav.open .links { clip-path: circle(150% at calc(100% - 40px) 40px); }
+  .links a { opacity: 0; transform: translateY(10px); transition: opacity .3s ease, transform .3s var(--ease); }
+  .links .pill { font-size: 13px; padding: 14px 32px; margin-top: 10px; }
+  /* el desenfoque de la barra encierra al menú (position: fixed) dentro de ella;
+     al abrirlo se quita para que cubra toda la pantalla */
+  .nav.open {
+    color: var(--crema); background: transparent; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .nav.open .links { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .25s ease; }
+  .nav.open .links a { opacity: 1; transform: none; }
+  .nav.open .links a:nth-child(2) { transition-delay: .03s; }
+  .nav.open .links a:nth-child(3) { transition-delay: .06s; }
+  .nav.open .links a:nth-child(4) { transition-delay: .09s; }
+  .nav.open .links a:nth-child(5) { transition-delay: .12s; }
+  .nav.open .links a:nth-child(6) { transition-delay: .15s; }
+  .nav.open .links a:nth-child(7) { transition-delay: .18s; }
+  body.menu-open { overflow: hidden; }
+  body.entered.menu-open .wa-float { opacity: 0; pointer-events: none; transition-delay: 0s; }
 }
 
 /* =========================================================
