@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabañas Terracota · Próximamente</title>
+  <meta name="description" content="Cabañas Terracota: un refugio entre montañas. Muy pronto abrimos nuestras puertas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="locked">
+
+  <!-- ============ INTRO ============ -->
+  <div id="intro" aria-live="polite">
+    <div class="intro-content">
+      <svg class="tree" viewBox="0 0 200 230" aria-hidden="true">
+        <g class="tree-lines" fill="none" stroke-linecap="round">
+          <path class="ground" d="M30 218 H170" />
+          <path class="trunk" d="M100 218 C101 196 96 176 99 150 C101 132 99 120 100 104" />
+          <path d="M99 160 C88 148 74 140 60 124" />
+          <path d="M60 124 C52 118 46 110 42 100" />
+          <path d="M100 150 C112 138 128 130 142 114" />
+          <path d="M142 114 C150 108 156 100 160 90" />
+          <path d="M100 128 C92 110 84 98 78 78" />
+          <path d="M78 78 C73 70 70 62 68 52" />
+          <path d="M100 126 C108 108 118 96 124 74" />
+          <path d="M124 74 C129 66 133 58 135 48" />
+          <path d="M100 110 C100 90 101 70 100 40" />
+          <path class="root" d="M99 214 C90 216 80 218 70 218" />
+          <path class="root" d="M101 214 C110 216 122 218 132 218" />
+        </g>
+        <g class="leaves"></g>
+      </svg>
+      <p class="intro-script">Bienvenidos a</p>
+      <h1 class="intro-title split" aria-label="Cabañas Terracota">
+        <span class="line">Cabañas</span>
+        <span class="line">Terracota</span>
+      </h1>
+      <p class="intro-sub">Un refugio entre montañas · Próximamente</p>
+      <button class="intro-enter" type="button">
+        <span>Entrar</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#inicio" class="brand" aria-label="Cabañas Terracota, inicio">
+      <svg class="brand-tree" viewBox="0 0 40 44" aria-hidden="true">
+        <path d="M20 42 V22 M20 30 L12 22 M20 27 L28 19 M20 22 L15 12 M20 22 L25 11 M20 22 V6" />
+        <circle cx="20" cy="14" r="11" />
+      </svg>
+      <span class="brand-text">
+        <span class="b1">Cabañas</span>
+        <span class="b2">Terracota</span>
+      </span>
+    </a>
+    <nav class="links" aria-label="Principal">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#refugio">El Refugio</a>
+      <a href="#cabanas">Cabañas</a>
+      <a href="#noche">Experiencia</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto" class="pill">Avísame</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Abrir menú"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero">
+      <div class="hero-bg"><img src="img/pic1.jpeg" alt="Cabañas Terracota con las montañas al fondo"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-inner">
+        <p class="hero-script">Un refugio entre montañas</p>
+        <h2 class="hero-title split">Próximamente</h2>
+        <p class="hero-lead">Cabañas de colores, fogata bajo las estrellas y el silencio del campo.<br>Estamos preparando algo hecho a mano, para ti.</p>
+
+        <div class="countdown" aria-label="Cuenta regresiva para la apertura">
+          <div><span data-cd="d">00</span><small>Días</small></div>
+          <div><span data-cd="h">00</span><small>Horas</small></div>
+          <div><span data-cd="m">00</span><small>Minutos</small></div>
+          <div><span data-cd="s">00</span><small>Segundos</small></div>
+        </div>
+
+        <form class="notify" novalidate>
+          <label class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required>
+          </label>
+          <button type="submit">Quiero enterarme</button>
+          <p class="form-msg" role="status"></p>
+        </form>
+      </div>
+      <a href="#refugio" class="scroll-cue" aria-label="Bajar">
+        <span>Descubre</span><i></i>
+      </a>
+    </section>
+
+    <!-- ============ EL REFUGIO ============ -->
+    <section id="refugio" class="story">
+      <div class="story-row">
+        <div class="story-text reveal">
+          <p class="eyebrow">El refugio</p>
+          <h3 class="script-title">Escapa a la tranquilidad</h3>
+          <p>Entre cerros verdes y cielos abiertos, Cabañas Terracota nace como un rincón para desconectarte. Cabañas de madera pintadas en rojo terracota y verde profundo, rodeadas de tierra roja, plantas y montañas.</p>
+          <p>Un lugar sencillo y cálido, pensado para compartir con quien quieres: café por la mañana, caminata por la tarde y fogata por la noche.</p>
+        </div>
+        <figure class="story-img reveal-img" data-speed="0.06">
+          <img src="img/pic3.jpeg" alt="Cabaña verde azulado con puerta corrediza">
+          <figcaption>Cabaña Verde</figcaption>
+        </figure>
+      </div>
+
+      <div class="story-row reverse">
+        <figure class="story-img reveal-img" data-speed="0.06">
+          <img src="img/pic4.jpeg" alt="Tipis verdes sobre plataformas de madera">
+          <figcaption>Tipis</figcaption>
+        </figure>
+        <div class="story-text reveal">
+          <p class="eyebrow">Los detalles</p>
+          <h3 class="script-title">Hecho a mano</h3>
+          <p>Tipis de lona sobre plataformas de madera, celosías con luces, macetas de barro y vistas a la sierra desde cada rincón. Cada espacio se está terminando con cariño, pieza por pieza.</p>
+          <ul class="facts">
+            <li><strong>Check-in</strong><span>Próximamente</span></li>
+            <li><strong>Hospedaje</strong><span>Cabañas y tipis</span></li>
+            <li><strong>Ideal para</strong><span>Parejas, familias y amigos</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LO QUE VIENE ============ -->
+    <section class="features">
+      <div class="section-head reveal">
+        <p class="eyebrow">Lo que estamos preparando</p>
+        <h3 class="big-title">Pequeños lujos, <em>al aire libre</em></h3>
+      </div>
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8c4 6 9 9 9 17a9 9 0 0 1-18 0c0-5 3-7 4-11 2 3 3 4 5 4-1-4-1-7 0-10z"/><path d="M10 42l28-6M38 42l-28-6"/></svg>
+          <h4>Fogata central</h4>
+          <p>Un círculo para convivir, contar historias y asar bombones bajo las estrellas.</p>
+        </article>
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h36M8 10v32M40 10v32"/><path d="M8 14c8 6 24 6 32 0"/><circle cx="14" cy="18" r="2"/><circle cx="24" cy="20" r="2"/><circle cx="34" cy="18" r="2"/></svg>
+          <h4>Pérgola con luces</h4>
+          <p>Luces colgantes que se encienden al atardecer sobre una pérgola de madera.</p>
+        </article>
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="14" cy="38" rx="7" ry="4"/><ellipse cx="28" cy="28" rx="6" ry="3.5"/><ellipse cx="20" cy="17" rx="5" ry="3"/><ellipse cx="32" cy="9" rx="4" ry="2.5"/></svg>
+          <h4>Caminos de piedra</h4>
+          <p>Senderos que conectan cada cabaña con la fogata y los jardines.</p>
+        </article>
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 30h24l-3 12H15z"/><path d="M24 30V14M24 22c-6 0-9-4-10-9 6 0 9 3 10 9zM24 18c5 0 8-3 9-8-5 0-8 3-9 8z"/></svg>
+          <h4>Jardineras</h4>
+          <p>Plantas nativas de bajo mantenimiento: sábilas, suculentas y lengua de suegra.</p>
+        </article>
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 44V12M34 44V12"/><rect x="8" y="14" width="32" height="14" rx="2"/><path d="M14 21h20"/></svg>
+          <h4>Letrero de madera</h4>
+          <p>Una bienvenida rústica en la entrada, tallada para recibirte.</p>
+        </article>
+        <article class="feature reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 8h12l3 8H15z"/><rect x="16" y="16" width="16" height="16" rx="2"/><path d="M24 32v8M18 40h12"/><path d="M8 22H5M43 22h-3M10 13l-2-2M38 13l2-2"/></svg>
+          <h4>Iluminación cálida</h4>
+          <p>Faroles en cada fachada para que la noche se sienta como en casa.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CABAÑAS ============ -->
+    <section id="cabanas" class="cabins">
+      <div class="section-head reveal">
+        <p class="eyebrow">Elige tu refugio</p>
+        <h3 class="big-title">Tres maneras de <em>quedarte</em></h3>
+      </div>
+      <div class="cabin-grid">
+        <article class="cabin reveal" style="--accent: var(--rojo)">
+          <div class="cabin-img"><img src="img/pic2.jpeg" alt="Cabaña roja con ventana y planta en maceta"></div>
+          <div class="cabin-body">
+            <span class="tag">Próximamente</span>
+            <h4>Cabaña Terracota</h4>
+            <p>Nuestro rojo de siempre. Acogedora, con porche y vista a la sierra.</p>
+            <span class="swatch"></span>
+          </div>
+        </article>
+        <article class="cabin reveal" style="--accent: var(--teal)">
+          <div class="cabin-img"><img src="img/pic3.jpeg" alt="Cabaña verde azulado"></div>
+          <div class="cabin-body">
+            <span class="tag">Próximamente</span>
+            <h4>Cabaña Verde</h4>
+            <p>Verde profundo, puerta corrediza y faroles para las noches largas.</p>
+            <span class="swatch"></span>
+          </div>
+        </article>
+        <article class="cabin reveal" style="--accent: var(--salvia)">
+          <div class="cabin-img"><img src="img/pic4.jpeg" alt="Tipis de lona sobre plataformas de madera"></div>
+          <div class="cabin-body">
+            <span class="tag">Próximamente</span>
+            <h4>Tipis bajo las estrellas</h4>
+            <p>Tipis de lona sobre plataformas de madera: la aventura de acampar con la comodidad de una cama.</p>
+            <span class="swatch"></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ NOCHE ============ -->
+    <section id="noche" class="night">
+      <div class="night-bg"><img src="img/pic1.jpeg" alt=""></div>
+      <div class="stars" aria-hidden="true"></div>
+      <svg class="string-lights" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+        <path class="wire" d="M0 30 Q300 150 600 64 T1200 56" />
+        <g class="bulbs"></g>
+      </svg>
+      <canvas class="embers" aria-hidden="true"></canvas>
+      <div class="fire-glow" aria-hidden="true"></div>
+      <div class="night-inner reveal">
+        <p class="hero-script">Cuando cae la noche</p>
+        <h3 class="big-title light">La fogata se enciende,<br><em>las luces también</em></h3>
+        <p>Cielos limpios, aire de montaña y el crujir de la leña. Así se van a sentir tus noches en Terracota.</p>
+      </div>
+    </section>
+
+    <!-- ============ GALERÍA ============ -->
+    <section id="galeria" class="gallery">
+      <div class="section-head reveal">
+        <p class="eyebrow">Un adelanto</p>
+        <h3 class="big-title">Así va <em>quedando</em></h3>
+      </div>
+      <div class="gallery-grid">
+        <button class="g-item g1 reveal-img" data-src="img/pic1.jpeg" type="button"><img src="img/pic1.jpeg" alt="Vista general de las cabañas"></button>
+        <button class="g-item g2 reveal-img" data-src="img/pic2.jpeg" type="button"><img src="img/pic2.jpeg" alt="Entrada a la cabaña roja"></button>
+        <button class="g-item g3 reveal-img" data-src="img/pic3.jpeg" type="button"><img src="img/pic3.jpeg" alt="Cabaña Verde"></button>
+        <button class="g-item g4 reveal-img" data-src="img/pic4.jpeg" type="button"><img src="img/pic4.jpeg" alt="Tipis"></button>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="cta">
+      <div class="cta-inner reveal">
+        <svg class="cta-tree" viewBox="0 0 40 44" aria-hidden="true">
+          <path d="M20 42 V22 M20 30 L12 22 M20 27 L28 19 M20 22 L15 12 M20 22 L25 11 M20 22 V6" />
+          <circle cx="20" cy="14" r="11" />
+        </svg>
+        <p class="eyebrow">Sé de los primeros</p>
+        <h3 class="big-title">Reserva tu lugar <em>antes que nadie</em></h3>
+        <p>Déjanos tu correo y te avisamos el día de la apertura, con una tarifa especial para los primeros huéspedes.</p>
+        <form class="notify dark" novalidate>
+          <label class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required>
+          </label>
+          <button type="submit">Avísame</button>
+          <p class="form-msg" role="status"></p>
+        </form>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="f-brand">Cabañas Terracota</p>
+    <p>Un refugio entre montañas · Próximamente</p>
+    <p class="f-small">© <span class="year"></span> Cabañas Terracota</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" aria-hidden="true">
+    <button class="lb-close" type="button" aria-label="Cerrar">×</button>
+    <img alt="">
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
