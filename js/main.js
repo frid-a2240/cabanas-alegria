@@ -1,9 +1,6 @@
 /* =========================================================
-   Cabañas Alegría · Próximamente
+   Cabañas Alegría
    ========================================================= */
-
-// Fecha de apertura (cámbiala cuando la tengas definida)
-const OPENING_DATE = new Date("2027-03-21T12:00:00");
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -68,32 +65,6 @@ function enter() {
   document.body.classList.add("entered");
   $(".hero-title").classList.add("play");
   setTimeout(() => intro.classList.add("gone"), 2200);
-}
-
-/* ---------- Cuenta regresiva ---------- */
-function countdown() {
-  const els = { d: $('[data-cd="d"]'), h: $('[data-cd="h"]'), m: $('[data-cd="m"]'), s: $('[data-cd="s"]') };
-  const pad = n => String(n).padStart(2, "0");
-  const update = () => {
-    let diff = Math.max(0, OPENING_DATE - new Date());
-    const vals = {
-      d: Math.floor(diff / 864e5),
-      h: Math.floor(diff / 36e5) % 24,
-      m: Math.floor(diff / 6e4) % 60,
-      s: Math.floor(diff / 1e3) % 60,
-    };
-    Object.entries(vals).forEach(([k, v]) => {
-      const txt = pad(v);
-      if (els[k].textContent !== txt) {
-        els[k].textContent = txt;
-        els[k].classList.remove("tick");
-        void els[k].offsetWidth;
-        els[k].classList.add("tick");
-      }
-    });
-  };
-  update();
-  setInterval(update, 1000);
 }
 
 /* ---------- Aparecer al hacer scroll ---------- */
@@ -245,6 +216,45 @@ function nightScene() {
   }, { threshold: 0.1 }).observe(section);
 }
 
+/* ---------- Mapa ilustrado: Cómo llegar ---------- */
+function routeMap() {
+  const card = $(".map-card");
+  const motion = $(".car animateMotion");
+  const steps = $$(".steps li");
+  const pins = $$(".pin");
+  let timers = [];
+
+  const highlight = n => {
+    steps.forEach(li => li.classList.toggle("on", li.dataset.step === String(n)));
+    pins.forEach(pn => pn.classList.toggle("on", pn.dataset.pin === String(n)));
+  };
+
+  // el recorrido dura 6 s; cada paso se ilumina cuando el coche pasa por ahí
+  const play = () => {
+    timers.forEach(clearTimeout);
+    card.classList.remove("go");
+    void card.offsetWidth;
+    card.classList.add("go");
+    if (motion && !reduceMotion) motion.beginElement();
+    timers = [[0, 1], [1700, 2], [3000, 3], [5200, 4]].map(([t, n]) => setTimeout(() => highlight(n), t));
+  };
+
+  new IntersectionObserver(([e], obs) => {
+    if (e.isIntersecting) { play(); obs.disconnect(); }
+  }, { threshold: 0.4 }).observe(card);
+
+  $(".replay").addEventListener("click", play);
+  steps.forEach(li => li.addEventListener("mouseenter", () => highlight(li.dataset.step)));
+  pins.forEach(pn => pn.addEventListener("mouseenter", () => highlight(pn.dataset.pin)));
+
+  // pestañas Mapa / Vista de calle
+  const frame = $(".map-frame iframe");
+  $$(".map-tabs button").forEach(btn => btn.addEventListener("click", () => {
+    $$(".map-tabs button").forEach(b => b.classList.toggle("active", b === btn));
+    frame.src = btn.dataset.map === "street" ? frame.dataset.streetSrc : frame.dataset.mapSrc;
+  }));
+}
+
 /* ---------- Galería ---------- */
 function lightbox() {
   const lb = $(".lightbox");
@@ -275,7 +285,7 @@ function forms() {
         return;
       }
       // Aquí se conectaría el envío real (Formspree, Mailchimp, etc.)
-      msg.textContent = "¡Gracias! Te avisaremos en cuanto abramos.";
+      msg.textContent = "¡Gracias! Te contactaremos pronto para confirmar tu reservación.";
       input.value = "";
     });
   });
@@ -299,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!entered && ["Enter", " ", "ArrowDown", "PageDown"].includes(e.key)) { e.preventDefault(); enter(); }
   });
 
-  countdown();
+  routeMap();
   reveals();
   nav();
   onScroll();
