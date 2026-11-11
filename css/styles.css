@@ -253,34 +253,58 @@ body.entered .hero-inner > *:nth-child(5) { animation-delay: 2.1s; }
 .hero-lead { font-size: clamp(15px, 1.6vw, 18px); max-width: 560px; margin: 0 auto 34px; color: rgba(246,239,228,.9); }
 
 
-.notify {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-  max-width: 620px; margin: 0 auto;
+/* formulario de reservación (abre WhatsApp) */
+.booking {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  max-width: 620px; margin: 0 auto; text-align: left;
 }
-.notify .field {
-  flex: 1 1 260px; display: flex; align-items: center; gap: 10px;
-  background: var(--crema); color: var(--tinta); padding: 0 18px;
+.b-full { grid-column: 1 / -1; }
+.b-field { display: flex; flex-direction: column; gap: 6px; }
+.b-field span { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: rgba(246,239,228,.75); }
+.b-field input, .b-field select {
+  font: inherit; font-size: 16px; color: var(--tinta);
+  background: var(--crema); border: 1px solid transparent; border-radius: 0;
+  padding: 13px 14px; width: 100%; min-height: 50px; outline: none;
+  -webkit-appearance: none; appearance: none;
+  transition: border-color .3s, box-shadow .3s;
 }
-.notify .field svg { width: 20px; height: 20px; fill: none; stroke: var(--tinta-2); stroke-width: 1.4; flex: none; }
-.notify input {
-  border: 0; outline: 0; background: transparent; width: 100%;
-  font: inherit; font-size: 15px; padding: 16px 0; color: var(--tinta);
+.b-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235d4c41' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
 }
-.notify button {
-  border: 0; background: var(--teal); color: var(--crema);
-  padding: 16px 30px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase;
-  position: relative; overflow: hidden;
-  transition: background .4s;
+.b-field input:focus, .b-field select:focus { border-color: #c5d4bc; box-shadow: 0 0 0 3px rgba(197,212,188,.35); }
+.booking button {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-top: 8px; border: 0; padding: 17px 24px;
+  background: var(--crema); color: var(--teal);
+  font-size: 12px; letter-spacing: .24em; text-transform: uppercase;
+  transition: background .4s, color .4s, transform .4s var(--ease);
 }
-.notify button::before {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
-  transform: translateX(-100%); transition: transform .8s var(--ease);
+.booking button svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+.booking button:hover { background: var(--rojo); color: var(--crema); transform: translateY(-2px); }
+.form-msg { margin: 6px 0 0; font-family: var(--serif); font-style: italic; font-size: 19px; min-height: 1.5em; text-align: center; }
+.booking.shake { animation: shake .5s; }
+.cta-phone { font-size: 15px; }
+.cta-phone a { color: #c5d4bc; border-bottom: 1px solid currentColor; }
+
+/* botón flotante de WhatsApp */
+.wa-float {
+  position: fixed; right: 20px; bottom: 20px; z-index: 60;
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--teal); color: var(--crema);
+  box-shadow: 0 10px 30px -8px rgba(30,90,88,.6);
+  opacity: 0; transform: translateY(20px) scale(.8); pointer-events: none;
+  transition: opacity .6s var(--ease), transform .6s var(--ease), background .4s;
 }
-.notify button:hover { background: var(--rojo); }
-.notify button:hover::before { transform: translateX(100%); }
-.form-msg { flex-basis: 100%; margin: 6px 0 0; font-family: var(--serif); font-style: italic; font-size: 19px; min-height: 1.5em; }
-.notify.shake { animation: shake .5s; }
+body.entered .wa-float { opacity: 1; transform: none; pointer-events: auto; transition-delay: 1.5s, 1.5s, 0s; }
+.wa-float:hover { background: var(--rojo); }
+.wa-float svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+.wa-float::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid var(--teal); animation: ping 2.4s var(--ease) infinite;
+}
+@keyframes ping { from { transform: scale(1); opacity: .7; } to { transform: scale(1.6); opacity: 0; } }
+.footer a { color: var(--crema); }
 @keyframes shake { 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
 
 .scroll-cue {
@@ -566,8 +590,6 @@ section { position: relative; }
 .cta .big-title em { color: #c5d4bc; }
 .cta-inner > p:not(.eyebrow) { color: rgba(246,239,228,.82); margin: 22px auto 34px; max-width: 520px; }
 .cta-logo { display: block; width: 64px; height: 64px; fill: none; stroke: #c5d4bc; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 18px; }
-.notify.dark button { background: var(--crema); color: var(--teal); }
-.notify.dark button:hover { background: var(--rojo); color: var(--crema); }
 .socials { display: flex; justify-content: center; gap: 14px; margin-top: 30px; }
 .socials a {
   width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
@@ -749,7 +771,8 @@ section { position: relative; }
   .route-map .ice-lbl { font-size: 8px; }
   .route-map .ice-big { font-size: 12px; }
 
-  .notify button { flex: 1 1 100%; }
+  .booking { grid-template-columns: 1fr; }
+  .wa-float { right: 14px; bottom: 14px; width: 52px; height: 52px; }
   .f-brand { font-size: 20px !important; letter-spacing: .18em; }
 }
 

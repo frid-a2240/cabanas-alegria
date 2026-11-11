@@ -296,27 +296,64 @@ function lightbox() {
   addEventListener("keydown", e => { if (e.key === "Escape") close(); });
 }
 
-/* ---------- Formularios ---------- */
-function forms() {
-  $$(".notify").forEach(form => {
-    const msg = $(".form-msg", form);
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const input = $("input", form);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
-        msg.textContent = "Escribe un correo válido, por favor.";
-        form.classList.remove("shake");
-        void form.offsetWidth;
-        form.classList.add("shake");
-        return;
-      }
-      // Aquí se conectaría el envío real (Formspree, Mailchimp, etc.)
-      msg.textContent = "¡Gracias! Te contactaremos pronto para confirmar tu reservación.";
-      input.value = "";
-    });
+/* ---------- Reservación por WhatsApp ---------- */
+const WHATSAPP = "526462551522";
+
+function booking() {
+  const form = $(".booking");
+  if (!form) return;
+  const msg = $(".form-msg", form);
+  const llegada = form.elements.llegada;
+  const salida = form.elements.salida;
+
+  // fecha local (no UTC) para que en la noche no se brinque al día siguiente
+  const pad = n => String(n).padStart(2, "0");
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  llegada.min = iso(today);
+  salida.min = iso(tomorrow);
+  llegada.addEventListener("change", () => {
+    if (!llegada.value) return;
+    const next = new Date(llegada.value + "T12:00:00");
+    next.setDate(next.getDate() + 1);
+    salida.min = iso(next);
+    if (!salida.value || salida.value <= llegada.value) salida.value = iso(next);
+  });
+
+  const fecha = v => new Date(v + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const fail = text => {
+    msg.textContent = text;
+    form.classList.remove("shake");
+    void form.offsetWidth;
+    form.classList.add("shake");
+  };
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const f = form.elements;
+    if (!f.nombre.value.trim()) return fail("Escribe tu nombre, por favor.");
+    if (!f.llegada.value || !f.salida.value) return fail("Elige tus fechas de llegada y salida.");
+    if (f.salida.value <= f.llegada.value) return fail("La salida debe ser después de la llegada.");
+
+    const noches = Math.round((new Date(f.salida.value) - new Date(f.llegada.value)) / 864e5);
+    const texto = [
+      "¡Hola! Quiero reservar en Cabañas Alegría.",
+      "",
+      `Nombre: ${f.nombre.value.trim()}`,
+      `Llegada: ${fecha(f.llegada.value)}`,
+      `Salida: ${fecha(f.salida.value)} (${noches} ${noches === 1 ? "noche" : "noches"})`,
+      `Huéspedes: ${f.huespedes.value}`,
+      `Hospedaje: ${f.hospedaje.value}`,
+      "",
+      "¿Tienen disponibilidad?",
+    ].join("\n");
+
+    msg.textContent = "Abriendo WhatsApp…";
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
   });
 }
-
 
 /* ---------- Init ---------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -341,5 +378,5 @@ document.addEventListener("DOMContentLoaded", () => {
   onScroll();
   nightScene();
   lightbox();
-  forms();
+  booking();
 });
