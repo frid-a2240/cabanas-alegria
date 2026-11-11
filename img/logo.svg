@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 84">
+  <g transform="translate(10 10)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="30" fill="#f6efe4" stroke="#1e5a58" stroke-width="2"/>
+    <path d="M5 34 L18 22 L26 28 L37 15 L59 36" stroke="#7f9774" stroke-width="2"/>
+    <circle cx="47" cy="12" r="3" stroke="#9a2f26" stroke-width="2"/>
+    <path d="M21 37.5 V50 H37 V37.5" fill="#1e5a58" stroke="#1e5a58" stroke-width="2"/>
+    <path d="M17 40 L29 29.5 L41 40" stroke="#9a2f26" stroke-width="2.6"/>
+    <path d="M27 50 V44 H31 V50" stroke="#f6efe4" stroke-width="1.6"/>
+    <path d="M42 46 L46 36 L50 46 Z M46 46 V50" fill="#7f9774" stroke="#7f9774" stroke-width="1.6"/>
+    <path d="M8 50 H56" stroke="#1e5a58" stroke-width="2"/>
+  </g>
+  <g font-family="'Cormorant Garamond', Georgia, serif" fill="#2a201b">
+    <text x="92" y="36" font-size="15" letter-spacing="6">CABAÑAS</text>
+    <text x="90" y="66" font-size="31" font-weight="500" letter-spacing="6">ALEGRÍA</text>
+  </g>
+</svg>

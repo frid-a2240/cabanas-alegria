@@ -1,5 +1,5 @@
 /* =========================================================
-   Cabañas Terracota · Próximamente
+   Cabañas Alegría · Próximamente
    ========================================================= */
 
 // Fecha de apertura (cámbiala cuando la tengas definida)
