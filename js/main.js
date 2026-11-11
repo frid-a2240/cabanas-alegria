@@ -69,15 +69,27 @@ function enter() {
 
 /* ---------- Aparecer al hacer scroll ---------- */
 function reveals() {
+  const items = $$(".reveal, .reveal-img");
+  const show = el => el.classList.add("in");
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
+      if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
     });
-  }, { threshold: 0.18, rootMargin: "0px 0px -40px 0px" });
-  $$(".reveal, .reveal-img").forEach(el => io.observe(el));
+  }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+  items.forEach(el => io.observe(el));
+
+  // respaldo: revela lo que ya está en pantalla (o arriba de ella) aunque el observer no avise
+  const check = () => {
+    const limit = innerHeight * 0.95;
+    items.forEach(el => {
+      if (!el.classList.contains("in") && el.getBoundingClientRect().top < limit) show(el);
+    });
+  };
+  addEventListener("scroll", check, { passive: true });
+  addEventListener("resize", check);
+  addEventListener("load", check);
+  setTimeout(check, 600);
 }
 
 /* ---------- Nav ---------- */
